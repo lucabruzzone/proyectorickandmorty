@@ -8,11 +8,14 @@ function Nav({onSearch}) {
         <div className={styles.navGeneral}>
             <div className={styles.nav}>
                 <h1 className={styles.titulo}>Rick and Morty</h1>
-                <NavLink to='/About'>
-                <button>About</button>
-                </NavLink>
                 <NavLink to='/Home'>
-                <button>Home</button>
+                <button id={styles.home}>Home</button>
+                </NavLink>
+                <NavLink to='/About'>
+                <button id={styles.about}>About</button>
+                </NavLink>
+                <NavLink to='/Favorites'>
+                <button id={styles.home}>Favorites</button>
                 </NavLink>
                 <SearchBar onSearch={onSearch}/>
             </div>

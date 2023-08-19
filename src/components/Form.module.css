@@ -38,10 +38,12 @@
     margin: 20px 0;
     gap: 10px;
 }
-.inputContainer input{
+/* .inputContainer input{
     outline: none;
-    padding: 3px 5px;
-}
+    padding: 7px 5px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.178);
+} */
 
 .inputsContainer{
     display: flex;
@@ -51,6 +53,7 @@
 
 .usernameContainer{
     display: flex;
+    align-items: center;
 }
 
 .formContainer button{
@@ -110,6 +113,14 @@
 
 .inputSuccess{
     border: 1px solid rgb(29, 202, 29);
-    border-radius: 2px;
+    padding: 7px 5px;
+    border-radius: 8px;
     background-color: rgba(29, 202, 29, 0.16);
+}
+
+.inputFail{
+    /* outline: none; */
+    padding: 7px 5px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.178);
 }

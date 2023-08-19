@@ -1,0 +1,71 @@
+
+.nameCharacter{
+    text-decoration: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+.nameCharacter:hover{
+    cursor: pointer;
+}
+
+.genderCharacter{
+    text-decoration: none;
+    width: 100%;
+    margin: 0;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.genderCharacter:hover{
+    cursor: pointer;
+}
+
+.fav{
+max-width: 315px;
+display: flex;
+flex-direction: column;
+border-radius: 10px;
+overflow: hidden;
+box-shadow: 1px 1px 3px #0000003a;
+}
+
+.fav:hover{
+    box-shadow: 0 1px 10px 2px #00000084;
+}
+
+.favSelected{
+    max-width: 315px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 2px 2px 5px #00000027;
+    background-color: brown;
+}
+
+.divText{
+    text-decoration: none;
+    color: black;
+}
+
+.imgContainer{
+    overflow: hidden;
+}
+
+.img{
+    object-fit: cover;
+    width: 100%;
+    transition: .5s;
+}
+
+.img:hover{
+    scale: 1.05;
+    transition: .5s;
+}   
+
+.imgStatic{
+    object-fit: cover;
+    width: 100%;
+}

@@ -8,6 +8,9 @@ import Nav from './components/Nav';
 import About from './components/About';
 import Detail from './components/Detail';
 import Form from './components/Form';
+import Favorites from './components/Favorites';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeFav } from './redux/actions';
 
 
 function App() {
@@ -18,6 +21,8 @@ function App() {
    const password = 'holichao123';
    const [character, setCharacter] = useState({});
    const [characters, setCharacters] = useState([]);
+   const [copias, setCopias] = useState([]);
+   const dispatch = useDispatch();
 
    function login(userData) {
       if (userData.username === email && userData.password === password) {
@@ -34,6 +39,8 @@ function App() {
    function onClose(id){
       const charactersFiltrados = characters.filter(character => character.id !== id);
       setCharacters(charactersFiltrados);
+      setCopias([copias.filter(charId => charId !== id)]);
+      dispatch(removeFav(id));
    }
 
    function onSearch(id, string = 'all') { 
@@ -41,9 +48,15 @@ function App() {
          if(data.name) {
             if(string !== 'all') {
                setCharacter(data);
-               console.log(character)
             }
-            else setCharacters([...characters, data]);
+            else {
+               if(!copias.includes(id)) {
+                  setCopias([...copias, id])
+                  setCharacters([...characters, data]);
+                  console.log([...characters, data]);
+               }
+               else alert('El personaje ya fue agregado');
+            }
          }
          else window.alert(`No se encontró el personaje con el id: ${id}`)
       }).catch(error => {
@@ -57,6 +70,7 @@ function App() {
          <Routes>
             <Route path='/' element={<Form login={login}/>}/>
             <Route path='/Home' element={<Cards characters={characters} onClose={onClose}/>}/>
+            <Route path='/Favorites' element={<Favorites/>}/>
             <Route path="/About" element={<About/>}/>
             <Route path="/Detail/:id" element={<Detail character={character} onSearch={onSearch}/>}/>
          </Routes>

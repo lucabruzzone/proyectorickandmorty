@@ -30,7 +30,7 @@ export default function Form(props) {
             /* alert('Login Exitoso'); */
             props.login(userData);
         }
-        else alert('Usuario o contraseña inválida');
+        else alert('El usuario o la contraseña no son válidos');
     }
 
     function handleKeyDown(event) {

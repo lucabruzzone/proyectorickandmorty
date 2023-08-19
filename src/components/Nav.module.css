@@ -28,7 +28,7 @@
 .nav button{
     cursor: pointer;
     border: none;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     padding: 10px 20px;
     font-weight: 500;
     background-color: brown;
@@ -36,4 +36,12 @@
 }
 .nav button:hover{
     background-color: rgb(157, 27, 27);
+}
+
+#about{
+    border-radius: 5px;
+}
+
+#home{
+    border-radius: 5px;
 }

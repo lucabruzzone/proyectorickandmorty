@@ -1,29 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import styles from './Card.module.css';
 import {Link} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { addFav, removeFav } from '../redux/actions';
 
-const DivCard = styled.div`
-max-width: 315px;
-background-color: #ffffff;
-display: flex;
-flex-direction: column;
-border-radius: 10px;
-overflow: hidden;
-box-shadow: 5px 5px 15px #00000019;
-&:hover{
-   box-shadow: 5px 5px 15px #0000006c;
-   background-color: rgba(179, 12, 12, 0.862);
-   cursor: pointer;
-}
-`;
-
-const SizeH3 = styled.h2`
-font-size: 70%;
-`;
 
 const Imagen = styled.img`
-object-fit: contain;
+object-fit: cover;
 width: 100%;
+transition: .5s;
+&:hover{
+   scale: 1.05;
+   transition: .5s;
+}
 `;
 
 const Button = styled.button`
@@ -38,6 +29,31 @@ border-radius: 10px 0 0 0;
 
 export default function Card(props) {
    const { id, name, gender, image, species, status } = props.character;
+   const dispatch = useDispatch();
+   const myFavorites = useSelector(state => state.myFavorites);
+   const [isFav, setIsFav] = useState(false);
+
+   function handleFavorite() {
+      if(isFav) {
+         setIsFav(false);
+         dispatch(removeFav(id));
+      }
+      else {
+         setIsFav(true);
+         dispatch(addFav(props.character));
+      }
+   }
+
+   useEffect(() => {
+      console.log(myFavorites);
+      myFavorites.forEach((fav) => {
+         if (fav.id === id) {
+            setIsFav(true);
+         }
+      });
+   }, [myFavorites]);
+
+
    if (props.keyDetail) {
       return (
          <div key={id}>
@@ -49,16 +65,33 @@ export default function Card(props) {
          </div>
       );
    }
+   if (!props.onClose) {
+      return (
+         <div className={styles.favSelected} key={id}>
+            <Link className={styles.imgContainer} to={`/Detail/${id}`}>
+               <img className={isFav ? styles.imgStatic : styles.img} src={image} alt='imagen'/>
+            </Link>
+            <Button onClick={handleFavorite}>X</Button>
+            <div className={styles.divText}>
+            <h2 className={styles.nameCharacter}>{name}</h2>
+            <h2 className={styles.genderCharacter}>{gender}</h2>
+            </div>
+         </div>
+      );
+   }
+
    else {
       return (
-         <DivCard key={id}>
-            <Imagen src={image} alt='imagen' />
-            <Button onClick={() => props.onClose(id)}>X</Button>
-            <Link to={`/Detail/${id}`}>
-               <SizeH3>{name}</SizeH3>
+         <div className={isFav ? styles.favSelected : styles.fav} key={id}>
+            <Link className={styles.imgContainer} to={`/Detail/${id}`}>
+               <img className={isFav ? styles.imgStatic : styles.img} src={image} alt='imagen'/>
             </Link>
-            <SizeH3>{gender}</SizeH3>
-         </DivCard>
+            <Button onClick={() => props.onClose(id)}>X</Button>
+            <div className={styles.divText} onClick={handleFavorite}>
+            <h2 className={styles.nameCharacter}>{name}</h2>
+            <h2 className={styles.genderCharacter}>{gender}</h2>
+            </div>
+         </div>
       );
    }
 }
