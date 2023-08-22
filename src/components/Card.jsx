@@ -1,21 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import styles from './Card.module.css';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { addFav, removeFav } from '../redux/actions';
 
-
-const Imagen = styled.img`
-object-fit: cover;
-width: 100%;
-transition: .5s;
-&:hover{
-   scale: 1.05;
-   transition: .5s;
-}
-`;
 
 const Button = styled.button`
 position: absolute;
@@ -30,7 +20,7 @@ border-radius: 10px 0 0 0;
 export default function Card(props) {
    const { id, name, gender, image, species, status } = props.character;
    const dispatch = useDispatch();
-   const myFavorites = useSelector(state => state.myFavorites);
+   const allCharacters = useSelector(state => state.allCharacters);
    const [isFav, setIsFav] = useState(false);
 
    function handleFavorite() {
@@ -45,13 +35,12 @@ export default function Card(props) {
    }
 
    useEffect(() => {
-      console.log(myFavorites);
-      myFavorites.forEach((fav) => {
+      allCharacters.forEach((fav) => {
          if (fav.id === id) {
             setIsFav(true);
          }
       });
-   }, [myFavorites]);
+   }, [allCharacters]);
 
 
    if (props.keyDetail) {
@@ -72,9 +61,15 @@ export default function Card(props) {
                <img className={isFav ? styles.imgStatic : styles.img} src={image} alt='imagen'/>
             </Link>
             <Button onClick={handleFavorite}>X</Button>
-            <div className={styles.divText}>
-            <h2 className={styles.nameCharacter}>{name}</h2>
-            <h2 className={styles.genderCharacter}>{gender}</h2>
+            <div className={styles.divTextContainer}>
+               <div className={styles.divText}>
+                  <h2 className={styles.nameCharacter}>{name}</h2>
+                  <p className={styles.genderCharacter}>{gender}</p>
+               </div>
+               <div className={styles.divText} id={styles.textRight}>
+                  <p>{species}</p>
+                  <p>{id}</p>
+               </div>
             </div>
          </div>
       );
@@ -87,9 +82,15 @@ export default function Card(props) {
                <img className={isFav ? styles.imgStatic : styles.img} src={image} alt='imagen'/>
             </Link>
             <Button onClick={() => props.onClose(id)}>X</Button>
-            <div className={styles.divText} onClick={handleFavorite}>
-            <h2 className={styles.nameCharacter}>{name}</h2>
-            <h2 className={styles.genderCharacter}>{gender}</h2>
+            <div className={styles.divTextContainer} onClick={handleFavorite}>
+               <div className={styles.divText}>
+                  <h2 className={styles.nameCharacter}>{name}</h2>
+                  <p className={styles.genderCharacter}>{gender}</p>
+               </div>
+               <div className={styles.divText} id={styles.textRight}>
+                  <p>{species}</p>
+                  <p>{id}</p>
+               </div>
             </div>
          </div>
       );

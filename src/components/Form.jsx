@@ -34,10 +34,7 @@ export default function Form(props) {
     }
 
     function handleKeyDown(event) {
-        console.log(event.key);
         if (event.key === 'Enter') {
-            console.log('✅ Enter key pressed');
-            console.log(errors.boolean1);
             submitHandler(event);
         }
     };

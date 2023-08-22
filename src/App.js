@@ -18,7 +18,7 @@ function App() {
    const navigate = useNavigate();
    const [access, setAccess] = useState(false);
    const email = 'luca.bruzzone95@gmail.com';
-   const password = 'holichao123';
+   const password = '12345678';
    const [character, setCharacter] = useState({});
    const [characters, setCharacters] = useState([]);
    const [copias, setCopias] = useState([]);
@@ -27,14 +27,14 @@ function App() {
    function login(userData) {
       if (userData.username === email && userData.password === password) {
          setAccess(true);
-         navigate('/home');
+         navigate('/Home');
       }
       else alert('Usuario o contraseña inválida');
    }
 
-   /* useEffect(() => {
+   useEffect(() => {
       !access && navigate('/');
-   }, [access]); */
+   }, [access]);
 
    function onClose(id){
       const charactersFiltrados = characters.filter(character => character.id !== id);
@@ -51,9 +51,8 @@ function App() {
             }
             else {
                if(!copias.includes(id)) {
-                  setCopias([...copias, id])
+                  setCopias([...copias, id]);
                   setCharacters([...characters, data]);
-                  console.log([...characters, data]);
                }
                else alert('El personaje ya fue agregado');
             }
@@ -63,7 +62,6 @@ function App() {
          window.alert(error.response.data.error);
       })
    }
-   
    return (
       <div className='App'>
          {location.pathname !== '/' && <Nav onSearch={onSearch}/>}
