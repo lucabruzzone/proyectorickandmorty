@@ -40,7 +40,7 @@ export default function Form(props) {
     };
 
     return (
-        <div onKeyDown={handleKeyDown} className={styles.cointainer}>
+        <div onKeyDown={handleKeyDown} className={styles.container}>
             <form /* onSubmit={submitHandler} */ className={styles.formContainer} action="">
                 <div className={styles.imgContainer}>
                     <img src="//rickandmortyapi.com/api/character/avatar/14.jpeg" alt="imagen" />

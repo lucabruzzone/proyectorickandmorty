@@ -32,6 +32,7 @@ export default function Card(props) {
          setIsFav(true);
          dispatch(addFav(props.character));
       }
+      console.log(isFav);
    }
 
    useEffect(() => {

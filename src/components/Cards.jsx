@@ -6,11 +6,11 @@ import { useDispatch } from 'react-redux';
 import styles from './Cards.module.css';
 
 const DivCard = styled.div`
-width: 100%;
 /* display: flex;
 align-items: center;
 justify-content: space-evenly;
 flex-wrap: wrap; */
+width: 100%;
 display: grid;
 grid-template-columns: repeat(
    auto-fit,
