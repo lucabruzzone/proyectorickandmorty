@@ -55,13 +55,20 @@ export default function Cards({characters, onClose}) {
 
    if (onClose) {
       return (
-      <DivCard>
-         {characters.map(character => {
-            return <Card 
-            character={character}
-            onClose={onClose}
-            />})}
-      </DivCard>
+         <div className={styles
+         .bigContainer}>
+            <div className={styles.addText}>
+               Note: Add to <span>favorites</span> by clicking on the space below the image of each character
+            </div>
+            <DivCard>
+               {characters.map(character => {
+                  return <Card
+                     character={character}
+                     onClose={onClose}
+                  />
+               })}
+            </DivCard>
+         </div>
       );
    }
    else {
