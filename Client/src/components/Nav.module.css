@@ -1,0 +1,63 @@
+.navGeneral{
+    /* position: fixed;
+    z-index: 20; */
+    width: 100%;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+.nav{
+    /* position: fixed; */
+    width: 100%;
+    min-height: 70px;
+    /* background-color: rgb(17, 17, 17); */
+    background-color: rgb(255, 255, 255);
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.169);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+}
+
+.titulo{
+    font-weight: 300;
+    color: rgb(0, 0, 0);
+}
+
+.button{
+    cursor: pointer;
+    border: none;
+    /* border-radius: 5px; */
+    padding: 10px 20px;
+    font-weight: 600;
+    /* background-color: brown; */
+    background-color: white;
+    border: 1px solid rgba(165, 42, 42, 0.425);
+    color: rgb(0, 0, 0);
+    transition: all .3s;
+}
+.nav button:hover{
+    background-color: rgb(157, 27, 27);
+    color: rgb(255, 255, 255);
+}
+
+#about{
+    border-radius: 25px;
+}
+
+#home{
+    border-radius: 25px;
+}
+
+#random{
+    background-color: rgb(179, 12, 12);
+    color: rgb(255, 255, 255);
+    border-radius: 25px;
+}
+#random:hover{
+    background-color: rgb(146, 16, 16);
+}

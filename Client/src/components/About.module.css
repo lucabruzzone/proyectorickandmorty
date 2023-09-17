@@ -1,0 +1,98 @@
+.bigContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    /* background: url('../img/641547.jpeg'); */
+    /* background-image: url('../img/641547.jpeg'); */
+    /* background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.525),
+    rgba(255, 255, 255, 0.517)
+    ), url("../img/641547.jpeg");
+    background-position-y: 0;
+    background-repeat: no-repeat;
+    background-size: cover; */
+}
+
+.aboutCard{
+    margin: 150px 15px;
+    padding: 15px;
+    background: #ededede0;
+    /* backdrop-filter: blur(5px); */
+    max-width: 700px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    color: rgb(0, 0, 0);
+    /* border: 1px solid black; */
+}
+
+
+
+
+
+/* TITULO */
+
+.titulo{
+    font-size: 27px;
+    font-weight: bold;
+}
+.titulo span{
+    content: ' Student';
+    margin-left: 10px;
+    font-size: 24px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.68);
+}
+
+
+
+
+
+/* LIST */
+
+.lista{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    padding: 0;
+}
+
+.lista li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    margin: 0 5px;
+}
+
+.icon{
+    font-size: 20px;
+}
+
+
+
+
+
+/* TEXT BOTTOM */
+
+.textBottom{
+    padding: 0 50px 20px 50px;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.textBottom span{
+    color: brown;
+    font-weight: 600;
+}
