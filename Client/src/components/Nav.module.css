@@ -45,6 +45,19 @@
     color: rgb(255, 255, 255);
 }
 
+.buttonOn{
+    cursor: pointer;
+    border: none;
+    /* border-radius: 5px; */
+    padding: 10px 20px;
+    font-weight: 600;
+    /* background-color: brown; */
+    background-color: rgb(179, 12, 12);
+    border: 1px solid rgba(165, 42, 42, 0.425);
+    color: rgb(255, 255, 255);
+    transition: all .3s;
+}
+
 #about{
     border-radius: 25px;
 }
@@ -54,10 +67,11 @@
 }
 
 #random{
-    background-color: rgb(179, 12, 12);
-    color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     border-radius: 25px;
 }
 #random:hover{
     background-color: rgb(146, 16, 16);
+    color: rgb(255, 255, 255);
 }

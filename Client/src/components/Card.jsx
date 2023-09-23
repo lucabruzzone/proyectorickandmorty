@@ -32,7 +32,12 @@ export default function Card(props) {
          setIsFav(true);
          dispatch(addFav(props.character));
       }
-      console.log(isFav);
+   }
+
+   function handleClose() {
+      setIsFav(false);
+      dispatch(removeFav(id));
+      props.onClose(id);
    }
 
    useEffect(() => {
@@ -94,7 +99,7 @@ export default function Card(props) {
             <Link className={styles.imgContainer} to={`/Detail/${id}`}>
                <img className={isFav ? styles.imgStatic : styles.img} src={image} alt='imagen'/>
             </Link>
-            <Button onClick={() => props.onClose(id)}>X</Button>
+            <Button onClick={handleClose}>X</Button>
             <div className={styles.divTextContainer} onClick={handleFavorite}>
                <div className={styles.divText}>
                   <h2 className={styles.nameCharacter}>{name}</h2>

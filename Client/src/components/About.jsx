@@ -4,6 +4,7 @@ import html from '../img/bxl-html5.svg';
 import css from '../img/bxl-css3.svg';
 import react from '../img/bxl-react.svg';
 import redux from '../img/bxl-redux.svg';
+import express from '../img/express.svg';
 
 export default function About() {
     return (
@@ -18,6 +19,7 @@ export default function About() {
                     <li><img src={css} alt="" />CSS </li>
                     <li><img src={react} alt="" />React </li>
                     <li><img src={redux} alt="" />Redux </li>
+                    <li><img src={express} alt="" />Express </li>
                 </ul>
                 <div className={styles.textBottom}>
                     My name is <span>Luca Bruzzone</span>, and I am student of the <span>full stack</span> program at <span>Henry</span>, and this is my <span>Integration Proyect</span> from <span>Module 2</span>. 

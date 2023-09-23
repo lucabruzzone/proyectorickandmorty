@@ -61,14 +61,14 @@ export default function Cards({characters, onClose}) {
             <div className={styles.addText}>
                Note: Add to <span>favorites</span> by clicking on the space below the image of each character
             </div>
-            <DivCard>
+            {characters ?(<DivCard>
                {characters.map(character => {
                   return <Card
                      character={character}
                      onClose={onClose}
                   />
                })}
-            </DivCard>
+            </DivCard>): <h1>Loading...</h1>}
          </div>
       );
    }

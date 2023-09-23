@@ -9,27 +9,30 @@ import About from './components/About';
 import Detail from './components/Detail';
 import Form from './components/Form';
 import Favorites from './components/Favorites';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { removeFav } from './redux/actions';
+import { removeAllFav } from './redux/actions';
 
 
 function App() {
    const location = useLocation();
    const navigate = useNavigate();
    const [access, setAccess] = useState(false);
-   const email = 'luca.bruzzone95@gmail.com';
-   const password = '12345678';
    const [character, setCharacter] = useState({});
    const [characters, setCharacters] = useState([]);
    const [copias, setCopias] = useState([]);
    const dispatch = useDispatch();
 
    function login(userData) {
-      if (userData.username === email && userData.password === password) {
-         setAccess(true);
-         navigate('/Home');
-      }
-      else alert('Usuario o contraseña inválida');
+      const { username, password } = userData;
+      const URL = 'http://localhost:3001/rickandmorty/login/';
+      axios(`${URL}?email=${username}&password=${password}`)
+      .then(({data}) => {
+         const { access } = data;
+         setAccess(access);
+         access? navigate('/home'): alert('Usuario o contraseña inválida');
+      })
+      .catch(error => alert('ha ocurrido un error, vuelva a intentarlo'))
    }
 
    useEffect(() => {
@@ -41,6 +44,12 @@ function App() {
       setCharacters(charactersFiltrados);
       setCopias([copias.filter(charId => charId !== id)]);
       dispatch(removeFav(id));
+   }
+
+   function onCloseAll() {
+      setCharacters([]);
+      setCopias([]);
+      dispatch(removeAllFav());
    }
 
    /* axios(`https://rickandmortyapi.com/api/character/${id}`) */
@@ -60,12 +69,12 @@ function App() {
          }
          else window.alert(`No se encontró el personaje con el id: ${id}`)
       }).catch(error => {
-         window.alert(error);
+         window.alert(`No se encontró el personaje con el id: ${id}`);
       })
    }
    return (
       <div className='App'>
-         {location.pathname !== '/' && <Nav onSearch={onSearch}/>}
+         {location.pathname !== '/' && <Nav onSearch={onSearch} onCloseAll={onCloseAll}/>}
          <Routes>
             <Route path='/' element={<Form login={login}/>}/>
             <Route path='/Home' element={<Cards characters={characters} onClose={onClose}/>}/>

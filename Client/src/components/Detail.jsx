@@ -18,7 +18,8 @@ export default function Detail() {
                 }
                 else setCharacter(data)
             }
-        )
+        );
+        return setCharacter({});
     }, [id]);
 
     if(character) 
