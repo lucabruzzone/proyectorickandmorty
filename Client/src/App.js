@@ -23,16 +23,17 @@ function App() {
    const [copias, setCopias] = useState([]);
    const dispatch = useDispatch();
 
-   function login(userData) {
-      const { username, password } = userData;
-      const URL = 'http://localhost:3001/rickandmorty/login/';
-      axios(`${URL}?email=${username}&password=${password}`)
-      .then(({data}) => {
+   async function login(userData) {
+      try {
+         const { username, password } = userData;
+         const URL = 'http://localhost:3001/rickandmorty/login/';
+         const { data } = await axios(`${URL}?email=${username}&password=${password}`)
          const { access } = data;
          setAccess(access);
-         access? navigate('/home'): alert('Usuario o contraseña inválida');
-      })
-      .catch(error => alert('ha ocurrido un error, vuelva a intentarlo'))
+         access ? navigate('/home') : alert('Usuario o contraseña inválida');
+      } catch (error) {
+         alert('ha ocurrido un error, vuelva a intentarlo');
+      }
    }
 
    useEffect(() => {
@@ -53,14 +54,15 @@ function App() {
    }
 
    /* axios(`https://rickandmortyapi.com/api/character/${id}`) */
-   function onSearch(id, string = 'all') { 
-      axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({data}) => {
-         if(data) {
-            if(string !== 'all') {
+   async function onSearch(id, string = 'all') {
+      try {
+         const { data } = await axios(`http://localhost:3001/rickandmorty/character/${id}`);
+         if (data) {
+            if (string !== 'all') {
                setCharacter(data);
             }
             else {
-               if(!copias.includes(id)) {
+               if (!copias.includes(id)) {
                   setCopias([...copias, id]);
                   setCharacters([...characters, data]);
                }
@@ -68,9 +70,9 @@ function App() {
             }
          }
          else window.alert(`No se encontró el personaje con el id: ${id}`)
-      }).catch(error => {
+      } catch (error) {
          window.alert(`No se encontró el personaje con el id: ${id}`);
-      })
+      }
    }
    return (
       <div className='App'>

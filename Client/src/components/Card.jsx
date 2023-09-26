@@ -67,7 +67,9 @@ export default function Card(props) {
                   </div>
                </div>
             ) : (
-               <div><h1>Loading...</h1></div>
+                  <div id={styles.loadingDiv}>
+                     <div id={styles.loading}></div>
+                  </div>
             )}
          </div>
       );
@@ -95,21 +97,31 @@ export default function Card(props) {
 
    else {
       return (
-         <div className={isFav ? styles.favSelected : styles.fav} key={id}>
-            <Link className={styles.imgContainer} to={`/Detail/${id}`}>
-               <img className={isFav ? styles.imgStatic : styles.img} src={image} alt='imagen'/>
-            </Link>
-            <Button onClick={handleClose}>X</Button>
-            <div className={styles.divTextContainer} onClick={handleFavorite}>
-               <div className={styles.divText}>
-                  <h2 className={styles.nameCharacter}>{name}</h2>
-                  <p className={styles.genderCharacter}>{gender}</p>
-               </div>
-               <div className={styles.divText} id={styles.textRight}>
-                  <p>{species}</p>
-                  <p>{id}</p>
-               </div>
-            </div>
+         <div>
+            {
+               origin ? (
+                  <div className={isFav ? styles.favSelected : styles.fav} key={id}>
+                     <Link className={styles.imgContainer} to={`/Detail/${id}`}>
+                        <img className={isFav ? styles.imgStatic : styles.img} src={image} alt='imagen' />
+                     </Link>
+                     <Button onClick={handleClose}>X</Button>
+                     <div className={styles.divTextContainer} onClick={handleFavorite}>
+                        <div className={styles.divText}>
+                           <h2 className={styles.nameCharacter}>{name}</h2>
+                           <p className={styles.genderCharacter}>{gender}</p>
+                        </div>
+                        <div className={styles.divText} id={styles.textRight}>
+                           <p>{species}</p>
+                           <p>{id}</p>
+                        </div>
+                     </div>
+                  </div>
+               ) : (
+                  <div id={styles.loadingBig}>
+                     <div id={styles.loading}></div>
+                  </div>
+               )
+            }
          </div>
       );
    }

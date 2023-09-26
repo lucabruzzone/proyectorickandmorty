@@ -1,5 +1,5 @@
 import Card from './Card';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { orderCards, filterCards } from '../redux/actions';
 import { useDispatch } from 'react-redux';
@@ -43,6 +43,10 @@ background: #ededede0;
 export default function Cards({characters, onClose}) {
    const [aux, setAux] = useState(false)
    const dispatch = useDispatch();
+
+   let [boolean, setboolean] = useState('');
+   function myFunction() {setboolean('holis')}
+   setTimeout(myFunction, 500);
    
    function handleOrder(e) {
       dispatch(orderCards(e.target.value));
@@ -57,18 +61,22 @@ export default function Cards({characters, onClose}) {
    if (onClose) {
       return (
          <div className={styles
-         .bigContainer}>
+            .bigContainer}>
             <div className={styles.addText}>
                Note: Add to <span>favorites</span> by clicking on the space below the image of each character
             </div>
-            {characters ?(<DivCard>
+            {characters ? (<DivCard>
                {characters.map(character => {
                   return <Card
                      character={character}
                      onClose={onClose}
                   />
                })}
-            </DivCard>): <h1>Loading...</h1>}
+            </DivCard>) : (
+               <div id={styles.loadingBig}>
+                  <div id={styles.loading}></div>
+               </div>
+            )}
          </div>
       );
    }
