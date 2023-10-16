@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import styles from './Card.module.css';
 import {Link} from 'react-router-dom';
@@ -35,14 +36,14 @@ export default function Card(props) {
    }
 
    function handleClose() {
-      setIsFav(false);
-      dispatch(removeFav(id));
+      /* setIsFav(false);
+      dispatch(removeFav(id)); */
       props.onClose(id);
    }
 
    useEffect(() => {
       allCharacters.forEach((fav) => {
-         if (fav.id === id) {
+         if (fav.id === id.toString()) {
             setIsFav(true);
          }
       });

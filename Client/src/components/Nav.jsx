@@ -5,7 +5,6 @@ import {NavLink, useLocation} from 'react-router-dom';
 
 function Nav({onSearch, onCloseAll}) {
     const {pathname} = useLocation();
-    console.log(pathname);
 
     function handleRandom() {
         const randomNumber = Math.floor(Math.random() * 827) + 1;

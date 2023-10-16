@@ -1,16 +1,21 @@
 const express = require('express');
 const login = require('../controllers/login');
+const postUser = require('../controllers/postUser');
+const deleteUser = require('../controllers/deleteUser');
+const postFav = require('../controllers/postFav');
+const deleteFav = require('../controllers/deleteFav');
+const getAllFavs = require('../controllers/getAllFavs');
 const getCharById = require('../controllers/getCharById');
-const { postFav, deleteFav, showAllFavs } = require('../controllers/handleFavorites');
 
 const router = express.Router();
-/* const router = require('express').Router(); */
 
-// http://localhost:3001/rickandmorty/characetr/5  ===>
-router.get("/character/:id", getCharById);
+router.post("/user", postUser);
+router.delete("/user", deleteUser);
 router.get("/login", login);
 router.post("/fav", postFav);
 router.delete("/fav/:id", deleteFav);
-router.get("/favorites", showAllFavs);
+router.get("/favorites", getAllFavs);
+
+router.get("/character/:id", getCharById);
 
 module.exports = router;

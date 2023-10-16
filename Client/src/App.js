@@ -44,13 +44,13 @@ function App() {
       const charactersFiltrados = characters.filter(character => character.id !== id);
       setCharacters(charactersFiltrados);
       setCopias([copias.filter(charId => charId !== id)]);
-      dispatch(removeFav(id));
+      /* dispatch(removeFav(id)); */
    }
 
    function onCloseAll() {
       setCharacters([]);
       setCopias([]);
-      dispatch(removeAllFav());
+      /* dispatch(removeAllFav()); */
    }
 
    /* axios(`https://rickandmortyapi.com/api/character/${id}`) */
